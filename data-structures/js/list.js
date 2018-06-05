@@ -48,3 +48,30 @@ List.prototype.remove = function(element) {
   return false;
 };
 
+List.prototype.length = function() {
+  return this.listSize;
+};
+
+List.prototype.toString = function() {
+  return this.dataStore;
+};
+
+List.prototype.insert = function(element, after) {
+  var insertAfter = this.find(after);
+  if (insertAfter > -1) {
+    this.dataStore.splice(insertAfter + 1, 0, element);
+    this.listSize = this.listSize + 1;
+    return true;
+  }
+  return false;
+};
+
+
+var listItems = new List();
+listItems.append('One');
+listItems.append('Two');
+listItems.append('Three');
+listItems.append('Four');
+console.log(listItems.toString());
+listItems.remove('Three');
+console.log(listItems.toString());
