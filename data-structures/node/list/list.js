@@ -2,7 +2,6 @@ function List() {
   this.listSize = 0;
   this.position = 0;
   this.dataStore = [];
-  // this.contains = contains;
 }
 
 List.prototype.clear = function(element) {
@@ -78,9 +77,7 @@ List.prototype.prev = function() {
 };
 
 List.prototype.next = function() {
-  if (this.position < this.listSize - 1) {
-    this.position = this.position + 1;
-  }
+  this.position = this.position + 1;
 };
 
 List.prototype.currentPosition = function() {
@@ -95,6 +92,10 @@ List.prototype.moveTo = function(pos) {
 
 List.prototype.getElement = function() {
   return this.dataStore[this.position];
+};
+
+List.prototype.contains = function(element) {
+  return this.findIndex(element) > -1;
 };
 
 module.exports = List;
