@@ -1,0 +1,22 @@
+{
+  "name": "js-playground",
+  "version": "0.0.1",
+  "description": "Javascript playground, practice, self-experience...",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ngmikeng/js-playground.git"
+  },
+  "author": "Minh Nguyen",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/ngmikeng/js-playground/issues"
+  },
+  "homepage": "https://github.com/ngmikeng/js-playground#readme",
+  "dependencies": {
+    "event-stream": "^4.0.0"
+  }
+}
