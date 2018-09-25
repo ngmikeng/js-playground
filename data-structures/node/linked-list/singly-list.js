@@ -22,7 +22,7 @@ SinglyList.prototype.remove = function(item) {
 SinglyList.prototype.display = function() {
   let currentNode = this.head;
   while (currentNode.next != null) {
-    console.log(currentNode.element);
+    console.log(currentNode.next.element);
     currentNode = currentNode.next;
   }
 };
