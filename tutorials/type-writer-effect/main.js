@@ -58,7 +58,7 @@ TypeWriter.prototype.type = function() {
     typeSpeed = 500;
 
     if (typeof this.onDeletedWord === 'function') {
-      this.onDeletedWord(fullTxt, this.txtColors[this.wordIndex]);
+      this.onDeletedWord(fullTxt, this.txtColors[this.wordIndex % this.words.length]);
     }
   }
 
@@ -78,7 +78,7 @@ function init() {
   txtWrapElement.setAttribute('style', `border-top: 0.1em solid ${txtColors[0]}`);
   const events = {
     onType: function(text) {
-      console.log(text);
+      // console.log(text);
     },
     onDeletedWord: function(word, color) {
       if (color) {
