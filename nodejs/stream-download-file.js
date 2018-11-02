@@ -19,10 +19,12 @@ const getProtocol = (url) => {
 const downloader = (url, dest) => {
   if (url) {
     try {
+      const fileType = getFileType(url);
+      const fileName = 'file-downloaded.' + fileType;
       if (!dest) {
-        const urlSplit = url.split('.');
-        const fileType = getFileType(url);
-        dest = 'file.' + fileType;
+        dest = fileName;
+      } else {
+        dest = path.join(path.normalize(dest), fileName);
       }
       const file = fs.createWriteStream(dest);
       const protocol = getProtocol(url);
@@ -34,7 +36,15 @@ const downloader = (url, dest) => {
       }
       if (resource) {
         const req = resource.get(url, (res) => {
+          let fullDataLength = parseInt(res.headers['content-length'], 10);
+          let currentDataLength = 0;
           res.pipe(file);
+          res.on('data', function (data) {
+            currentDataLength = currentDataLength + data.length;
+            let progress = currentDataLength / fullDataLength * 100;
+            console.log(`Progress: ${progress.toFixed(2)}`);
+            // res.pause();
+          });
 
           file.on('finish', () => {
             console.log('FINISH');
