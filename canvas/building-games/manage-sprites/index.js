@@ -16,7 +16,8 @@ var Game = {
   balloonPosition3: {
     x: 100,
     y: 0
-  }
+  },
+  backgroundMusic: undefined
 };
 
 Game.start = function() {
@@ -30,7 +31,22 @@ Game.start = function() {
   Game.balloonSprite.src = "sprites/spr_balloon.png";
   Game.balloonSprite.width = 100;
   Game.balloonSprite.height = 100;
+  Game.backgroundMusic = new Audio("sounds/mario_theme.mp3");
+  // Game.backgroundMusic = new Audio("sounds/contra_gameover.mp3");
+  Game.backgroundMusic.volume = 0.3;
+  Game.backgroundMusic.loop = true;
   Game.mainLoop();
+  var toggleMusic = true;
+  var musicButton = document.getElementById("musicButton");
+  musicButton.addEventListener('click', function(e) {
+    if (toggleMusic) {
+      Game.backgroundMusic.play();
+    } else {
+      Game.backgroundMusic.pause();
+      Game.backgroundMusic.load();
+    }
+    toggleMusic = !toggleMusic;
+  });
 };
 
 Game.update = function() {
@@ -43,7 +59,7 @@ Game.update = function() {
 Game.draw = function() {
   Game.drawImage(Game.backgroundSprite, {x: 0, y: 0});
   Game.drawImage(Game.balloonSprite, Game.balloonPosition2);
-  // Game.drawImage(Game.balloonSprite, Game.balloonPosition3);
+  Game.drawImage(Game.balloonSprite, Game.balloonPosition3);
   // Game.drawImage(Game.balloonSprite, { x : 200, y : 0 });
   // Game.drawImage(Game.balloonSprite, { x : 0, y : 300 });
   // Game.drawImage(Game.balloonSprite, { x : 200, y : 300 });
